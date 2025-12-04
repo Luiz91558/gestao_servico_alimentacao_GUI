@@ -35,8 +35,8 @@ public class Fachada {
     public Usuario validarEntrada(String login, String senha) {
         return cadastroUsuarios.validarEntrada(login, senha);
     }
-    public Usuario recuperarSenha(String dicaSenha, String ID){
-        return cadastroUsuarios.recuperarSenha(dicaSenha, ID);
+    public Usuario recuperarSenha(String login, String dicasenha) {
+        return cadastroUsuarios.recuperarSenha(login, dicasenha);
     }
     public void setSenha(Usuario usuario, String senha){
         usuario.setSenha(senha);

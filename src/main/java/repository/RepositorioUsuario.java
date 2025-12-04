@@ -21,6 +21,7 @@ public class RepositorioUsuario {
     public Usuario[] getUsuarios() {
         return usuarios;
     }
+    public int getPosicaoLivre(){ return posicaolivre; }
     public Usuario buscarUsuario(String ID){
         for(int i = 0; i < posicaolivre; i++){
             if(usuarios[i].getId().equals(ID)){

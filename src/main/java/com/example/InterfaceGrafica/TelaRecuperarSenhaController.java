@@ -1,6 +1,5 @@
 package com.example.InterfaceGrafica;
-
-import exceptions.LoginOuSenhaIncorretoException;
+import exceptions.LoginOuDicaSenhaIncorretoException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,37 +15,36 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
-
-public class TelaInicialController {
+public class TelaRecuperarSenhaController {
     @FXML
-    private TextField txtLogin;
+    private TextField txtLoginRecSenha;
     @FXML
-    private TextField txtSenha;
-    public void validarLogin(@NotNull ActionEvent event) {
-        String login = txtLogin.getText();
-        String senha = txtSenha.getText();
+    private TextField txtDicaSenha;
+    @FXML
+    public void validarRecuperacaoDeSenha(@NotNull ActionEvent event) throws IOException {
+        String login = txtLoginRecSenha.getText();
+        String dicaSenha = txtDicaSenha.getText();
         try {
-            Usuario usuario = Fachada.getInstace().validarEntrada(login, senha);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/InterfaceGrafica/TelaPrincipal.fxml"));
+            Usuario usuario = Fachada.getInstace().recuperarSenha(login, dicaSenha);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/InterfaceGrafica/AlterarSenha.fxml"));
             Parent root = loader.load();
-            TelaPrincipalController controller = loader.getController();
-            controller.setUsuario(usuario);
+            TelaAlterarSenhaController controller = loader.getController();
+            controller.SetUsuario(usuario);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } catch (LoginOuSenhaIncorretoException e) {
+        }catch (LoginOuDicaSenhaIncorretoException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
-    public void recuperarSenha( @NotNull ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/InterfaceGrafica/RecuperarSenha.fxml"));
+    @FXML
+    public void voltar(@NotNull ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/InterfaceGrafica/TelaInicial.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

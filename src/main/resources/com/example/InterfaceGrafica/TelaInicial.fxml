@@ -16,7 +16,7 @@
         <Label layoutX="115.0" layoutY="91.0" prefHeight="18.0" prefWidth="39.0" text="Login" />
         <Label layoutX="116.0" layoutY="183.0" text="Senha" />
         <Button fx:id="ButtonContinuar" onAction="#validarLogin" layoutX="302.0" layoutY="319.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" text="Continuar" />
-        <Button fx:id="ButtonRecuperarSenha" layoutX="300.0" layoutY="260.0" mnemonicParsing="false" text="Esqueci minha senha" />
+        <Button fx:id="ButtonRecuperarSenha" onAction= "#recuperarSenha" layoutX="300.0" layoutY="260.0" mnemonicParsing="false" text="Esqueci minha senha" />
         <TextField fx:id="txtLogin" layoutX="115.0" layoutY="119.0" prefHeight="26.0" prefWidth="318.0" />
         <TextField fx:id="txtSenha" layoutX="116.0" layoutY="216.0" prefHeight="26.0" prefWidth="318.0" />
     </children>

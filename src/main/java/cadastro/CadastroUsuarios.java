@@ -1,6 +1,8 @@
 package cadastro;
 import exceptions.IDExistenteException;
 import exceptions.IdNaoEncontradoException;
+import exceptions.LoginOuDicaSenhaIncorretoException;
+import exceptions.LoginOuSenhaIncorretoException;
 import repository.RepositorioUsuario;
 import modelo.Usuario;
 
@@ -33,20 +35,22 @@ public class CadastroUsuarios {
         }
         repositorio.removerUsuario(usuario);
     }
-    public Usuario validarEntrada(String login, String senha){
-        for(Usuario u: repositorio.getUsuarios()){
-            if(u.getLogin().equals(login) && u.getSenha().equals(senha)){
-                return u;
+    public Usuario validarEntrada(String login, String senha) throws LoginOuSenhaIncorretoException {
+        Usuario[] usuarios = repositorio.getUsuarios();
+        for(int i = 0; i < repositorio.getPosicaoLivre(); i++){
+            if(usuarios[i].getLogin().equals(login) && usuarios[i].getSenha().equals(senha)){
+                return usuarios[i];
             }
         }
-        return null;
+        throw new LoginOuSenhaIncorretoException("Login ou senha incorreto");
     }
-    public Usuario recuperarSenha(String dicaSenha, String ID){
-        for(Usuario usuario: repositorio.getUsuarios()){
-            if(usuario.getDicaSenha().equals(dicaSenha) && usuario.getId().equals(ID)){
-                return usuario;
+    public Usuario recuperarSenha(String login, String dicaSenha) throws LoginOuDicaSenhaIncorretoException {
+        Usuario[] usuarios = repositorio.getUsuarios();
+        for(int i = 0; i < repositorio.getPosicaoLivre(); i++){
+            if(usuarios[i].getDicaSenha().equals(dicaSenha) && usuarios[i].getLogin().equals(login)){
+                return usuarios[i];
             }
         }
-        return null;
+        throw new LoginOuDicaSenhaIncorretoException("O login ou a dica senha está incorreto");
     }
 }
