@@ -1,11 +1,14 @@
 package com.example.InterfaceGrafica;
 
-import modelo.Usuario;
+import fachada.Fachada;
+import javafx.fxml.FXML;
+import modelo.*;
 
 public class TelaPrincipalController {
-    Usuario usuario;
+    private Fachada fachada;
+    private Usuario usuario;
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
 }
